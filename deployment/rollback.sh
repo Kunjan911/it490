@@ -8,10 +8,11 @@
 #scp /home/roydem/database/scp/$sourcefile roydem@192.168.1.10:/home/roydem/scp
 #echo $sourecfile
 
-cd /home/roydem/database/scp
+cd /var/temp
+
 
 #delete contents first
-ssh roydem@192.168.1.10 'rm -rf /home/roydem/scp/*'
+ssh parth@192.168.1.17 'rm -rf /home/parth/Desktop/Parth/*'
 
 #send new rollback version
-pv $1 | ssh roydem@192.168.1.10 'cat | tar xz --strip-components=1 -C /home/roydem/scp'
+pv $1 | ssh parth@192.168.1.17 'cat | tar xz --strip-components=1 -C /home/parth/Desktop/Parth'

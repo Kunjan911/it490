@@ -12,7 +12,7 @@ function doRollback ($type,$package,$tier,$packageName,$version,$rollbackVersion
         echo "TIER: " . $tier . PHP_EOL;
 	echo "PACKAGE NAME: " . $packageName . PHP_EOL;
 
-	$mydb = new mysqli('127.0.0.1','test','4321password','test');
+	$mydb = new mysqli('192.168.1.11','user','password','deploy');
 
         if ($mydb->errno != 0){
 
@@ -26,7 +26,7 @@ function doRollback ($type,$package,$tier,$packageName,$version,$rollbackVersion
 
 
 	#destination of the scp to send
-        $file = "/home/roydem/database/scp/" . $packageName . "-" . $rollbackVersion . ".tgz";
+        $file = "/var/temp/" . $packageName . "-" . $rollbackVersion . ".tgz";
         echo "FILEPATH: " . $file . PHP_EOL;
 
         $file = escapeshellarg($file);
@@ -50,7 +50,7 @@ function doDeploy ($type,$package,$tier,$packageName,$version){
 	# execute shell script to install backend package
 
 	#destination of the scp to send
-	$sourcefile = "/home/roydem/database/scp/" . $packageName . "-" . $version . ".tgz";
+	$sourcefile = "/var/temp/" . $packageName . "-" . $version . ".tgz";
 	echo "FILEPATH: " . $sourcefile . PHP_EOL;
 	
 	$sourcefile = escapeshellarg($sourcefile);
@@ -69,7 +69,7 @@ function doBundle ($type,$package,$tier,$packageName,$version){
 	echo "SCP INITIATED... ";
 	echo "TAR FILE RECEIVED!";
 
-	$mydb = new mysqli('127.0.0.1','test','4321password','test');
+	$mydb = new mysqli('192.168.1.11','user','password','deploy');
 
         if ($mydb->errno != 0){
 
